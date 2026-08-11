@@ -174,7 +174,12 @@ a.oz-endoso:hover, a.oz-endoso:hover strong { color: var(--accent); }
   .oz-hero-badge { left: -14px; bottom: -22px; padding: 12px 16px 12px 12px; max-width: 220px; }
 }
 @media (max-width: 480px) {
-  .oz-hero-badge { position: static; margin: -30px 4px 0; max-width: none; width: auto; }
+  /* Sin solape con la foto: el fondo de la tarjeta (--paper) es idéntico al
+     fondo de página, así que la parte que quedaba fuera de la foto se
+     fundía con el fondo y la tarjeta parecía cortada por la mitad. En
+     pantallas pequeñas es más robusto bajarla limpia, a ancho completo,
+     que perseguir un solape calculado a mano. */
+  .oz-hero-badge { position: static; margin: 14px 0 0; max-width: none; width: 100%; }
 }
 
 /* ---------- Rejillas y paneles ---------- */
@@ -340,7 +345,11 @@ a.oz-endoso:hover, a.oz-endoso:hover strong { color: var(--accent); }
   .oz-step { grid-template-columns: 42px 1fr; }
   .oz-step p { grid-column: 2; }
   .oz-nav-toggle { display: flex; }
-  .oz-endoso { display: none; }
+  /* El endoso "by OTEYZERENA" aparece SIEMPRE, cabecera y pie, en las cinco
+     webs — es la decisión de arquitectura de marca (ver README del kit).
+     Antes se ocultaba aquí por exceso de celo con el espacio; medido, cabe
+     sin problema junto al logo y el botón de menú incluso a 375px. */
+  .oz-endoso { font-size: 10px; }
   .oz-nav-links {
     display: none; position: absolute; top: 100%; left: 0; right: 0;
     flex-direction: column; align-items: flex-start; gap: 16px;
