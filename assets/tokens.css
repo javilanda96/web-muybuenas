@@ -1,0 +1,152 @@
+/* ============================================================
+   TOKENS — Sistema de color y tipografía de las webs de producto
+   ============================================================
+
+   PRINCIPIO: un mismo esqueleto, un acento por app.
+
+   La paleta actual de OTEYZERENA (web-oteyzerena/src/app/globals.css)
+   es una familia de tierra en tono pastel:
+
+     --background #fdfbf7   papel cálido
+     --foreground #2d2a26   tinta cálida
+     --primary    #6b705c   salvia / oliva
+     --secondary  #a98467   tostado
+     --accent     #ddbea9   arena pálida
+
+   El problema no es la familia: es que TODO vive en el mismo tono medio.
+   No hay ancla oscura ni acento saturado, así que nada destaca y en
+   pantalla se lee como "suave" en vez de "premium".
+
+   LA EVOLUCIÓN: se conserva la familia de tierra (conexión con la
+   asesoría, es la misma casa) y se le añaden las dos cosas que faltaban:
+   un ancla oscura de verdad y un acento saturado. Cada app toma un
+   acento distinto de la misma rueda — así los cinco sitios se leen como
+   hermanos sin ser clones, y el hub sigue siendo el sitio salvia.
+
+   Cómo usarlo: se importa tokens.css antes que base.css y se activa UNA
+   de las paletas. Cambiar de paleta = cambiar una línea.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   BASE COMÚN A TODAS LAS APPS — no se toca por app
+   ------------------------------------------------------------ */
+:root {
+  /* Papel y tinta. El papel viene de OTEYZERENA (#fdfbf7) apenas
+     bajado para que el blanco de las tarjetas se despegue del fondo.
+     La tinta sube de #2d2a26 a un tono más profundo: es lo que le
+     faltaba a la paleta actual para tener contraste real. */
+  --paper:      #fbf8f2;
+  --paper-2:    #f3efe6;
+  --ink:        #23201c;
+  --ink-soft:   #2f2b26;
+
+  /* Grises cálidos, nunca fríos: la familia es de tierra */
+  --warm:       #6f6a5f;
+  --warm-soft:  #928c80;
+  --line:       #e3ddd0;
+  --line-dark:  rgba(255, 255, 255, 0.15);
+
+  /* Salvia de OTEYZERENA, conservada como color de apoyo en TODAS
+     las apps. Es el hilo visible que las une con la asesoría. */
+  --sage:       #6b705c;
+  --sage-deep:  #4c5142;
+
+  /* Tipografía
+     - Newsreader (serif): evoluciona el Playfair Display de la
+       asesoría hacia algo más contemporáneo y mejor en pantalla.
+     - Inter: es la tipografía de texto que ya usa OTEYZERENA.
+       Continuidad directa.
+     - IBM Plex Mono: solo para antetítulos y microcopy. Es lo que le
+       da el aire técnico y sobrio (aprendido del kit de Landthor). */
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Tipografía de énfasis: la palabra o frase que se destaca dentro de un
+     titular. NO va en cursiva — va en negra y en otra letra, para que corte
+     de verdad contra el serif.
+       ACTIVA · Anton               condensada de cartel (elegida 2026-08-11)
+       Alternativa · Archivo Black  grotesca pesada, más limpia
+       Alternativa · Bricolage Grotesque 800  con más carácter
+     Al cambiarla hay que cambiar también el <link> de Google Fonts, y ajustar
+     las dos variables de debajo: cada letra pide su calibración.
+     Anton es estrecha y de caja alta, así que aguanta casi el mismo cuerpo que
+     el serif y necesita un pelín de aire entre letras para no apelmazarse. */
+  --font-accent:    'Anton', 'Inter', sans-serif;
+  --accent-scale:   0.98;
+  --accent-tracking: 0.004em;
+
+  --radius: 2px;
+  /* Radio distinto para fotografía: los botones y tarjetas de UI van con
+     --radius (2px, técnico y sobrio); las fotos van más redondeadas
+     (cálidas, editoriales). Es la misma pareja que usan CoverManager y
+     la mayoría de SaaS "premium": esquina afilada en lo funcional,
+     esquina suave en lo humano. */
+  --radius-photo: 18px;
+  --maxw: 1240px;
+}
+
+/* ------------------------------------------------------------
+   ACENTO POR APP — se activa UNO solo
+   ------------------------------------------------------------ */
+
+/* === A · BRASA — propuesta para MuyBuenas (RECOMENDADA) ===
+   El ámbar-terracota es el #a98467 de OTEYZERENA llevado a
+   saturación: misma familia, otro volumen. Es cálido, apetitoso y
+   suena a "alguien te atiende", que es literalmente lo que hace el
+   producto. Riesgo conocido: el naranja está muy visto en foodtech —
+   se compensa manteniéndolo como acento sobre papel y tinta, nunca
+   como fondo dominante. */
+:root[data-acento="brasa"], :root:not([data-acento]) {
+  --accent:      #c4551f;
+  --accent-2:    #9e4315;
+  --accent-soft: #f7e6d6;
+  --accent-glow: rgba(196, 85, 31, 0.28);
+  --accent-on-dark: #f0894a;
+}
+
+/* === B · LAUREL — alternativa ===
+   Verde profundo + latón. Nace del salvia de la asesoría empujado a
+   verde oscuro, con un ámbar mostaza de contrapunto. Se aleja del
+   naranja genérico de foodtech y lee más "mantel, carta de vinos,
+   producto serio". Es la opción menos obvia y probablemente la más
+   distinguida; a cambio es menos cálida. */
+:root[data-acento="laurel"] {
+  --accent:      #2f4034;
+  --accent-2:    #1f2c23;
+  --accent-soft: #e6ebe2;
+  --accent-glow: rgba(201, 154, 46, 0.30);
+  --accent-on-dark: #c99a2e;
+}
+
+/* === C · NOCHE — alternativa ===
+   Invierte el modo: la web vive en oscuro y el papel es el respiro.
+   Es la más moderna y la que más diferencia del hub, pero también la
+   que más se aleja de la asesoría y la más cara de mantener legible.
+   Se deja preparada, no recomendada para la primera web. */
+:root[data-acento="noche"] {
+  --paper:       #1a1c19;
+  --paper-2:     #22251f;
+  --ink:         #f4f1e9;
+  --ink-soft:    #e0dbd0;
+  --warm:        #a8a294;
+  --warm-soft:   #8b8578;
+  --line:        rgba(255, 255, 255, 0.13);
+  --accent:      #e8a33d;
+  --accent-2:    #c9852a;
+  --accent-soft: rgba(232, 163, 61, 0.14);
+  --accent-glow: rgba(232, 163, 61, 0.30);
+  --accent-on-dark: #e8a33d;
+}
+
+/* ------------------------------------------------------------
+   RUEDA DE ACENTOS PARA LAS DEMÁS APPS (reserva de futuro)
+   No se activan todavía. Están aquí para que, cuando toque, nadie
+   improvise un color: la familia ya está decidida.
+
+     MuyBuenas (sala)     → brasa    #c4551f
+     Obrador (producción) → arcilla  #a8552f
+     CRM (crecimiento)    → laurel   #2f4034
+     Contabilidad         → pizarra  #3c4a57
+     OTEYZERENA (hub)     → salvia   #6b705c  ← se queda como está
+   ------------------------------------------------------------ */

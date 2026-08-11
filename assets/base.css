@@ -1,0 +1,357 @@
+/* ============================================================
+   BASE — sistema de componentes de las webs de producto OTEYZERENA
+   ============================================================
+   Origen: adaptado de `assets/landing.css` de landthor-web.
+   Qué se conservó: la estructura de componentes (es un sistema de
+   landing B2B completo y probado).
+   Qué se cambió:
+     - se saca todo el color a tokens.css (allí se cambia la marca)
+     - prefijo lt- → oz-
+     - se despliega a formato legible: el original venía en una sola
+       línea por bloque y era imposible de mantener a seis manos
+     - se añaden: precios, FAQ, formulario y páginas legales, que
+       Landthor no tenía y aquí son obligatorios
+   Requiere: tokens.css cargado ANTES que este fichero.
+   ============================================================ */
+
+/* ---------- Reset y base ---------- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent-soft); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Cabecera y navegación ---------- */
+.oz-header {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.oz-nav {
+  position: relative; width: 100%;
+  padding: 16px clamp(22px, 6vw, 112px);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.oz-brand { display: flex; align-items: baseline; gap: 9px; }
+.oz-brand-logo { display: block; width: auto; height: 34px; }
+.oz-footer-logo { display: block; width: auto; height: 28px; }
+/* El endoso. Aparece SIEMPRE, en las cinco webs, junto al logo y en el pie.
+   Es la decisión de arquitectura de marca hecha CSS. Dos palabras: si hay
+   que explicarlo con un párrafo, el endoso no está funcionando. */
+.oz-endoso {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: .04em;
+  color: var(--warm-soft); white-space: nowrap;
+  transition: color .25s ease;
+}
+.oz-endoso strong { font-weight: 500; color: var(--warm); letter-spacing: .06em; }
+a.oz-endoso:hover, a.oz-endoso:hover strong { color: var(--accent); }
+.oz-nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; }
+.oz-nav-links a:not(.oz-btn) {
+  white-space: nowrap; padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: color .25s ease, border-color .25s ease;
+}
+.oz-nav-links a:not(.oz-btn):hover { color: var(--accent); border-bottom-color: var(--accent); }
+.oz-nav-links .oz-btn { font-size: 13px; padding: 11px 20px; }
+.oz-nav-toggle {
+  display: none; background: none; border: 1px solid var(--line);
+  border-radius: var(--radius); width: 40px; height: 36px;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; cursor: pointer; padding: 0;
+}
+.oz-nav-toggle span { width: 16px; height: 1.5px; background: var(--ink); display: block; pointer-events: none; }
+
+/* ---------- Botones ---------- */
+.oz-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--ink); color: var(--paper);
+  padding: 15px 26px; border: 1px solid var(--ink);
+  border-radius: var(--radius); font-size: 15px; font-family: inherit;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease, transform .25s ease, border-color .25s ease;
+}
+.oz-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-2px); }
+.oz-btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.oz-btn--ghost:hover { background: var(--paper-2); color: var(--ink); border-color: var(--ink); transform: none; }
+.oz-btn--light { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+
+/* ---------- Estructura de sección ---------- */
+.oz-section { padding: 92px clamp(22px, 6vw, 32px); }
+.oz-inner { max-width: var(--maxw); margin: auto; }
+.oz-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 18px;
+}
+.oz-title, .oz-hero h1 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+.oz-title { font-size: clamp(2rem, 3.8vw, 3.2rem); line-height: 1.08; max-width: 20ch; }
+.oz-intro { font-size: 17px; color: var(--warm); max-width: 680px; margin: 20px 0 44px; text-wrap: pretty; }
+.oz-section--dark { background: var(--ink); color: var(--paper); }
+.oz-section--dark .oz-eyebrow { color: var(--accent-on-dark); }
+.oz-section--dark .oz-intro, .oz-section--dark .oz-muted { color: #aaa69d; }
+.oz-section--soft { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+/* ---------- Hero ----------
+   Ancho propio, mayor que --maxw: es la única sección donde la foto tiene
+   que dominar, así que se le da más aire sin tocar el ancho del resto del
+   sitio. Y la proporción de columnas se invierte a propósito — la foto
+   pasa a ser la columna MÁS ancha (1.2fr) en vez de la más pequeña
+   (antes .8fr): en un hero, la imagen manda, el texto la acompaña. */
+.oz-hero {
+  max-width: 1320px; margin: auto;
+  padding: 88px clamp(22px, 6vw, 32px) 82px;
+  display: grid; grid-template-columns: minmax(0, .95fr) minmax(420px, 1.1fr);
+  gap: 56px; align-items: center;
+}
+/* El clamp baja un punto respecto a la versión anterior: la columna de
+   texto se hizo más estrecha para dejar sitio a una foto más grande, y sin
+   este ajuste el titular pasaba de 3 a 5 líneas. */
+.oz-hero h1 { font-size: clamp(2.6rem, 4.6vw, 4.15rem); line-height: 1.08; max-width: 13ch; letter-spacing: -.015em; }
+/* Énfasis dentro de un titular. Nunca cursiva: negra, otra letra y color de
+   acento. Es lo que hace que el ojo caiga siempre en el mismo sitio. */
+.oz-acento {
+  font-family: var(--font-accent);
+  font-weight: 400;              /* Anton viene en un solo peso, ya es negra */
+  font-style: normal;
+  font-size: calc(1em * var(--accent-scale));
+  letter-spacing: var(--accent-tracking);
+  color: var(--accent);
+}
+.oz-section--dark .oz-acento, .oz-acento--sobre-oscuro { color: var(--accent-on-dark); }
+.oz-lead { font-size: 19px; color: var(--warm); max-width: 620px; margin: 26px 0 34px; text-wrap: pretty; }
+.oz-hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* ---------- Foto de portada, en capas ----------
+   Una foto sola en una caja se lee como plantilla. Lo que hace que un hero
+   se sienta diseñado y no "foto de stock en un rectángulo" es una segunda
+   pieza flotando sobre ella — aquí, una notificación que demuestra el
+   producto en marcha, no solo lo ilustra. Patrón tomado de cómo lo resuelve
+   la categoría cuando se ve profesional (CoverManager: foto + tarjeta
+   flotante superpuesta, en vez de una imagen a sangre completa tipo Ágora,
+   que pega demasiado con el look genérico de TPV que queremos evitar). */
+.oz-hero-photo-wrap { position: relative; }
+/* height:auto es obligatorio: los atributos width/height del <img> —que sí hay
+   que poner, para que el navegador reserve el hueco y la página no salte— se
+   mapean a un alto fijo que anularía el aspect-ratio. */
+.oz-hero-media {
+  width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; display: block;
+  border-radius: var(--radius-photo);
+  box-shadow: 0 24px 48px -24px rgba(35, 32, 28, .32), 0 4px 12px -4px rgba(35, 32, 28, .12);
+}
+.oz-hero-badge {
+  position: absolute; left: -34px; bottom: 34px;
+  display: flex; align-items: center; gap: 12px;
+  background: var(--paper); border-radius: calc(var(--radius-photo) - 6px);
+  padding: 14px 18px 14px 14px; max-width: 250px;
+  box-shadow: 0 18px 32px -16px rgba(35, 32, 28, .28), 0 2px 8px -2px rgba(35, 32, 28, .1);
+}
+.oz-hero-badge-icon {
+  flex: none; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--sage); color: var(--paper);
+  display: flex; align-items: center; justify-content: center;
+}
+.oz-hero-badge-icon svg { width: 17px; height: 17px; display: block; }
+.oz-hero-badge-label {
+  display: block; font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--warm-soft);
+}
+.oz-hero-badge-detail { display: block; font-size: 14.5px; color: var(--ink); margin-top: 2px; line-height: 1.3; }
+@media (max-width: 900px) {
+  .oz-hero-badge { left: -14px; bottom: -22px; padding: 12px 16px 12px 12px; max-width: 220px; }
+}
+@media (max-width: 480px) {
+  .oz-hero-badge { position: static; margin: -30px 4px 0; max-width: none; width: auto; }
+}
+
+/* ---------- Rejillas y paneles ---------- */
+.oz-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; }
+.oz-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; }
+.oz-panel {
+  padding: 32px 28px; border: 1px solid var(--line);
+  margin: -1px 0 0 -1px; background: var(--paper);
+  transition: background .3s ease;
+}
+.oz-panel:hover { background: var(--paper-2); }
+.oz-panel h3 { font-family: var(--font-display); font-size: 24px; font-weight: 600; margin: 0 0 12px; }
+.oz-panel p { margin: 0; color: var(--warm); }
+.oz-section--dark .oz-panel { background: transparent; border-color: var(--line-dark); }
+.oz-section--dark .oz-panel:hover { background: rgba(255, 255, 255, .04); }
+.oz-section--dark .oz-panel p { color: #c7c3b9; }
+.oz-num { font-family: var(--font-mono); color: var(--accent); font-size: 12px; margin-bottom: 18px; }
+.oz-section--dark .oz-num { color: var(--accent-on-dark); }
+
+/* ---------- Métricas ---------- */
+.oz-metrics { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+.oz-metric { padding: 26px 24px 4px 0; }
+.oz-metric strong { display: block; font-family: var(--font-display); font-size: 38px; line-height: 1.1; }
+.oz-metric span { font-size: 13px; color: var(--warm); }
+.oz-section--dark .oz-metrics { border-color: var(--line-dark); }
+.oz-section--dark .oz-metric span { color: #aaa69d; }
+
+/* ---------- Pasos numerados ---------- */
+.oz-steps { margin-top: 44px; }
+.oz-step {
+  display: grid; grid-template-columns: 64px minmax(180px, .5fr) 1fr;
+  gap: 24px; padding: 24px 0; border-top: 1px solid var(--line); align-items: start;
+}
+.oz-step:last-child { border-bottom: 1px solid var(--line); }
+.oz-step .oz-n { font-family: var(--font-mono); color: var(--accent); }
+.oz-step h3 { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin: 0; }
+.oz-step p { margin: 0; color: var(--warm); }
+.oz-section--dark .oz-step, .oz-section--dark .oz-step:last-child { border-color: var(--line-dark); }
+.oz-section--dark .oz-step p { color: #c7c3b9; }
+
+/* ---------- Lista de rasgos ---------- */
+.oz-list { list-style: none; margin: 0; padding: 0; }
+.oz-list li { padding: 17px 0; border-top: 1px solid var(--line); display: flex; gap: 14px; }
+.oz-list li::before { content: '—'; color: var(--accent); flex: none; }
+.oz-section--dark .oz-list li { border-color: var(--line-dark); }
+
+/* ---------- Cita ---------- */
+.oz-quote { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.18; margin: 0; text-wrap: pretty; }
+
+/* ---------- Precios ---------- */
+.oz-prices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: 44px; }
+.oz-price { border: 1px solid var(--line); margin: -1px 0 0 -1px; padding: 34px 28px; background: var(--paper); display: flex; flex-direction: column; gap: 16px; }
+.oz-price--featured { background: var(--paper-2); border-color: var(--accent); position: relative; z-index: 1; }
+.oz-price h3 { font-family: var(--font-display); font-size: 25px; font-weight: 600; margin: 0; }
+.oz-price-amount { font-family: var(--font-display); font-size: 40px; line-height: 1; }
+.oz-price-amount small { font-family: var(--font-body); font-size: 14px; color: var(--warm); font-weight: 400; }
+.oz-price ul { margin: 0; padding: 0; list-style: none; font-size: 15px; }
+.oz-price li { padding: 10px 0; border-top: 1px solid var(--line); color: var(--warm); }
+.oz-price .oz-btn { margin-top: auto; }
+
+/* ---------- FAQ ---------- */
+.oz-faq { border-top: 1px solid var(--line); margin-top: 40px; }
+.oz-faq details { border-bottom: 1px solid var(--line); }
+.oz-faq summary {
+  cursor: pointer; padding: 22px 0; font-family: var(--font-display);
+  font-size: 20px; font-weight: 600; list-style: none;
+  display: flex; justify-content: space-between; gap: 20px; align-items: baseline;
+}
+.oz-faq summary::-webkit-details-marker { display: none; }
+.oz-faq summary::after { content: '+'; color: var(--accent); font-family: var(--font-mono); font-size: 20px; flex: none; }
+.oz-faq details[open] summary::after { content: '–'; }
+.oz-faq p { margin: 0 0 22px; color: var(--warm); max-width: 70ch; }
+
+/* ---------- Formulario ---------- */
+.oz-form { display: grid; gap: 16px; max-width: 520px; }
+.oz-field { display: grid; gap: 6px; }
+.oz-field label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--warm-soft); }
+.oz-field input, .oz-field textarea, .oz-field select {
+  font-family: inherit; font-size: 15.5px; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 13px 14px; width: 100%;
+}
+.oz-field input:focus, .oz-field textarea:focus, .oz-field select:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.oz-consent { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--warm); }
+.oz-consent input { margin-top: 3px; flex: none; }
+
+/* ---------- CTA de cierre ---------- */
+.oz-cta { text-align: center; background: var(--accent-soft); padding: 90px clamp(22px, 6vw, 32px); }
+.oz-cta .oz-title { margin: 0 auto 18px; max-width: 24ch; }
+.oz-cta p { font-size: 18px; margin: 0 auto 32px; max-width: 640px; }
+
+/* ---------- Barra de CTA persistente ----------
+   Aparece al dejar atrás la portada y se retira al llegar al formulario,
+   para no tapar el propio sitio al que lleva. Es cromo, no contenido: si
+   el JS falla, la barra no aparece y no se pierde nada — el CTA sigue en
+   la cabecera y al final de la página. */
+.oz-stickybar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+  background: var(--ink); color: var(--paper);
+  border-top: 1px solid rgba(255, 255, 255, .14);
+  padding: 12px clamp(18px, 5vw, 40px);
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  transform: translateY(110%);
+  transition: transform .35s cubic-bezier(.22, .7, .3, 1);
+}
+.oz-stickybar.is-visible { transform: translateY(0); }
+.oz-stickybar-claim { font-size: 14.5px; margin: 0; }
+.oz-stickybar-claim strong { font-weight: 500; }
+.oz-stickybar-claim span {
+  display: block; font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent-on-dark); margin-top: 3px;
+}
+.oz-stickybar .oz-btn {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+  padding: 12px 24px; font-size: 14.5px; flex: none;
+}
+.oz-stickybar .oz-btn:hover { background: var(--accent-2); border-color: var(--accent-2); }
+@media (max-width: 640px) {
+  .oz-stickybar { padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); gap: 12px; }
+  .oz-stickybar-claim span { display: none; }
+  .oz-stickybar-claim { font-size: 13px; }
+  .oz-stickybar .oz-btn { padding: 12px 18px; font-size: 14px; }
+}
+
+/* ---------- Pie ---------- */
+.oz-footer { padding: 42px clamp(22px, 6vw, 32px); }
+.oz-footer-inner {
+  max-width: var(--maxw); margin: auto; border-top: 1px solid var(--line);
+  padding-top: 28px; display: flex; justify-content: space-between;
+  gap: 28px; flex-wrap: wrap; color: var(--warm); font-size: 13px;
+}
+.oz-footer-links { display: flex; flex-wrap: wrap; gap: 20px; height: max-content; }
+.oz-footer-links a:hover { color: var(--accent); }
+
+/* ---------- Sello de caso: cliente cero / cliente ---------- */
+.oz-sello {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: .12em; text-transform: uppercase;
+  border: 1px solid var(--accent); color: var(--accent);
+  border-radius: var(--radius); padding: 6px 10px;
+}
+.oz-sello--neutro { border-color: var(--line); color: var(--warm); }
+
+/* ---------- Páginas legales (tipografía de texto largo) ---------- */
+.oz-legal { max-width: 760px; margin: auto; padding: 72px clamp(22px, 6vw, 32px) 90px; }
+.oz-legal h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 600; margin: 0 0 32px; }
+.oz-legal h2 { font-family: var(--font-display); font-size: 24px; font-weight: 600; margin: 44px 0 14px; }
+.oz-legal p, .oz-legal li { color: var(--warm); font-size: 16.5px; }
+.oz-legal a { color: var(--accent); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .oz-hero, .oz-grid-2 { grid-template-columns: 1fr; }
+  .oz-hero { padding-top: 64px; gap: 42px; }
+  .oz-hero h1 { max-width: 15ch; }
+  .oz-hero-media { aspect-ratio: 16/10; max-height: 460px; }
+  .oz-grid-3, .oz-prices { grid-template-columns: 1fr; }
+  .oz-metrics { grid-template-columns: repeat(2, 1fr); }
+  .oz-step { grid-template-columns: 42px 1fr; }
+  .oz-step p { grid-column: 2; }
+  .oz-nav-toggle { display: flex; }
+  .oz-endoso { display: none; }
+  .oz-nav-links {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: flex-start; gap: 16px;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    padding: 18px 24px 22px; box-shadow: 0 20px 40px -30px rgba(35, 32, 28, .5); z-index: 30;
+  }
+  .oz-nav-links.is-open { display: flex; }
+  .oz-nav-links .oz-btn { width: 100%; }
+}
+@media (max-width: 560px) {
+  .oz-hero h1 { font-size: 2.6rem; }
+  .oz-metrics { grid-template-columns: 1fr; }
+  .oz-footer-inner { flex-direction: column; }
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="MuyBuenas">
+<title>MuyBuenas — símbolo sobre papel</title>
+<!-- Misma marca que symbol.svg, invertida: para usar sobre fondo claro
+     (cabeceras de documento, apps con tema claro forzado, merchandising). -->
+<rect width="200" height="200" rx="40" fill="#fbf8f2"/>
+<g transform="rotate(-5 100 100)">
+  <rect x="84" y="26" width="30" height="92" rx="7" fill="#c4551f"/>
+  <rect x="82" y="140" width="34" height="34" rx="8" fill="#c4551f"/>
+</g>
+</svg>

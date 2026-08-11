@@ -1,0 +1,434 @@
+<!doctype html>
+<!--
+  ============================================================
+  BORRADOR ESTRUCTURAL — web de producto MuyBuenas
+  ============================================================
+  QUÉ ES: la maqueta de la primera web de producto, con el kit ya
+  aplicado. Sirve para (a) ver la paleta en movimiento y (b) fijar la
+  arquitectura de la página antes de escribir el copy definitivo.
+
+  QUÉ NO ES: copy final. El texto de aquí es §12-seguro y está sacado de
+  material verificado (INFORME §5 y PRODUCT_DIRECTION.md de MuyBuenas),
+  pero el redactado publicable lo hace `web-copy`.
+
+  MARCADORES: todo lo que va entre [[ ]] es una decisión pendiente.
+
+  CAMBIAR DE PALETA: atributo data-acento del <html> → "brasa" | "laurel" | "noche"
+  ============================================================
+-->
+<html lang="es" data-acento="brasa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MuyBuenas · Atiende y reserva por ti, sin comisiones</title>
+<meta name="description" content="MuyBuenas atiende el teléfono, WhatsApp y tu web, comprueba la disponibilidad real de tu sala y confirma la reserva. Sin comisión por cubierto.">
+<meta name="theme-color" content="#23201c">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="[[dominio]]/">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/symbol.svg">
+<link rel="apple-touch-icon" href="[[symbol-512.png — raster pendiente, ver assets/logo/README.md]]">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MuyBuenas">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="MuyBuenas · Atiende y reserva por ti, sin comisiones">
+<meta property="og:description" content="Atiende el teléfono, WhatsApp y tu web, comprueba disponibilidad real y confirma la reserva. Sin comisión por cubierto.">
+<meta property="og:url" content="[[dominio]]/">
+<meta property="og:image" content="[[dominio]]/assets/brand/muybuenas-social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Anton es la letra de énfasis (--font-accent). Si se cambia, hay que
+     cambiarla también aquí y recalibrar --accent-scale y --accent-tracking. -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/base.css">
+
+<!-- JSON-LD: aquí el tipo cambia respecto a Landthor. Allí era
+     ProfessionalService (una consultora); esto es un producto. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MuyBuenas",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Atención y motor de reservas para restaurantes: responde por teléfono, WhatsApp y web, comprueba disponibilidad real y confirma la reserva sin comisión por cubierto.",
+  "publisher": { "@type": "Organization", "name": "OTEYZERENA", "url": "https://www.oteyzerena.com/" },
+  "areaServed": "ES"
+}
+</script>
+</head>
+
+<body>
+
+<header class="oz-header">
+  <nav class="oz-nav">
+    <span class="oz-brand">
+      <a href="#top" aria-label="MuyBuenas, inicio">
+        <img class="oz-brand-logo" src="../assets/logo/wordmark.svg" width="106" height="34" alt="MuyBuenas">
+      </a>
+      <a class="oz-endoso" href="https://www.oteyzerena.com/" target="_blank" rel="noopener">by <strong>OTEYZERENA</strong></a>
+    </span>
+    <button class="oz-nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="oz-nav-links">
+      <span></span><span></span>
+    </button>
+    <div class="oz-nav-links" id="oz-nav-links">
+      <a href="#que-hace">Qué hace</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#caso">Caso real</a>
+      <a href="#precios">Precios</a>
+      <a class="oz-btn" href="#contacto">Pide una demo</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="oz-hero">
+    <div>
+      <div class="oz-eyebrow">Atención y reservas para restaurantes</div>
+      <h1>Deja de perder reservas por <span class="oz-acento">no coger el teléfono</span>.</h1>
+      <p class="oz-lead">
+        MuyBuenas atiende por teléfono, por WhatsApp y desde tu web. Consulta la
+        disponibilidad real de tu sala, confirma la reserva y envía el recordatorio.
+        A las tres de la tarde con el comedor lleno, y a las tres de la madrugada.
+      </p>
+      <div class="oz-hero-actions">
+        <a class="oz-btn" href="#contacto">Pide una demo</a>
+        <a class="oz-btn oz-btn--ghost" href="#como-funciona">Ver cómo funciona</a>
+      </div>
+      <p style="margin-top:26px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-soft);">
+        Sin comisión por cubierto · La reserva es tuya · Tus datos son tuyos
+      </p>
+      <p style="margin-top:14px;font-size:14.5px;color:var(--warm);">
+        Contestando llamadas cada día en
+        <a href="https://www.sotodelprior.com" target="_blank" rel="noopener" style="color:var(--accent-2);border-bottom:1px solid var(--line);">SOTO del PRIOR</a>
+        y
+        <a href="https://montaguoriginals.com" target="_blank" rel="noopener" style="color:var(--accent-2);border-bottom:1px solid var(--line);">MONTAGU</a>,
+        en Navarra.
+      </p>
+    </div>
+    <div class="oz-hero-photo-wrap">
+      <!-- Imagen de portada. Cuatro tamaños en WebP; el navegador elige.
+           fetchpriority alto porque es el elemento que marca la velocidad
+           percibida de la página. object-position mantiene encuadrado al
+           camarero cuando el recorte 4/3 se come los laterales. -->
+      <img class="oz-hero-media"
+           src="../assets/img/hero-muybuenas-1200.webp"
+           srcset="../assets/img/hero-muybuenas-480.webp 480w,
+                   ../assets/img/hero-muybuenas-800.webp 800w,
+                   ../assets/img/hero-muybuenas-1200.webp 1200w,
+                   ../assets/img/hero-muybuenas-1600.webp 1600w"
+           sizes="(max-width: 900px) 100vw, 42vw"
+           width="1200" height="670"
+           style="object-position:58% center;"
+           fetchpriority="high" decoding="async"
+           alt="Camarero atendiendo una llamada de teléfono detrás de la barra, con el comedor lleno al fondo">
+      <!-- Tarjeta flotante: lo que hace que la foto se sienta "producto" y no
+           "banco de imágenes". Es una demostración, no una captura real de
+           pantalla — por eso el estilo es de notificación/aviso, no de
+           mockup de interfaz, así no sugerimos un admin panel que hoy no
+           enseñamos. aria-hidden porque es refuerzo visual: la misma
+           información ya está en el titular y el texto de apoyo. -->
+      <div class="oz-hero-badge" aria-hidden="true">
+        <span class="oz-hero-badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </span>
+        <span>
+          <span class="oz-hero-badge-label">Reserva confirmada</span>
+          <span class="oz-hero-badge-detail">Mesa para 4 · 21:30</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 01 · EL PROBLEMA ============ -->
+  <section class="oz-section oz-section--dark">
+    <div class="oz-inner oz-grid-2">
+      <div>
+        <div class="oz-eyebrow">01 — El problema</div>
+        <h2 class="oz-title">El teléfono suena justo cuando no puedes cogerlo.</h2>
+      </div>
+      <div>
+        <p class="oz-intro" style="margin-top:0">
+          La llamada entra en pleno servicio, o fuera de horario, o mientras estás
+          en la cocina. Quien no encuentra respuesta no vuelve a llamar: llama al
+          de al lado. Y las plataformas que sí cogen ese teléfono te cobran por
+          cada cubierto que ya era tuyo.
+        </p>
+        <ul class="oz-list">
+          <li>Llamadas perdidas en las horas de más servicio.</li>
+          <li>Mensajes de WhatsApp contestados horas después.</li>
+          <li>La agenda en papel y la web diciendo cosas distintas.</li>
+          <li>Mesas vacías por no-shows que nadie confirmó.</li>
+          <li>Comisión por cada reserva, aunque el cliente ya fuera tuyo.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 · QUÉ HACE ============ -->
+  <section class="oz-section" id="que-hace">
+    <div class="oz-inner">
+      <div class="oz-eyebrow">02 — Qué hace</div>
+      <h2 class="oz-title">Atiende, comprueba y confirma. Las tres cosas.</h2>
+      <p class="oz-intro">
+        No es un contestador con un mensaje grabado ni un formulario que alguien
+        tiene que repasar después. Habla, entiende lo que le piden, mira la
+        disponibilidad real y cierra la reserva.
+      </p>
+      <div class="oz-grid-3">
+        <div class="oz-panel">
+          <div class="oz-num">01</div>
+          <h3>Atiende</h3>
+          <p>Por teléfono con voz, por WhatsApp y desde el widget de tu web. Responde también las preguntas de siempre: horarios, alérgenos, si hay terraza, si se puede ir con niños.</p>
+        </div>
+        <div class="oz-panel">
+          <div class="oz-num">02</div>
+          <h3>Comprueba</h3>
+          <p>Consulta la disponibilidad real de tu sala antes de decir que sí. Nada de confirmar una mesa que no existe y arreglarlo luego por teléfono.</p>
+        </div>
+        <div class="oz-panel">
+          <div class="oz-num">03</div>
+          <h3>Confirma y recuerda</h3>
+          <p>Cierra la reserva, la manda a tu agenda y envía el recordatorio. Si lo necesitas, puede pedir señal para grupos o eventos.</p>
+        </div>
+      </div>
+
+      <!-- Honestidad como argumento de venta: es el valor de marca
+           "decir la verdad de la herramienta" puesto en la home. -->
+      <div style="margin-top:64px;border-left:2px solid var(--accent);padding-left:clamp(20px,3vw,36px);max-width:760px;">
+        <div class="oz-eyebrow">Y lo que todavía no hace</div>
+        <p style="font-family:var(--font-display);font-size:clamp(1.4rem,2.2vw,1.9rem);line-height:1.3;margin:0 0 16px;">
+          Preferimos decírtelo nosotros antes de que lo descubras tú.
+        </p>
+        <ul class="oz-list">
+          <li>No es un channel manager: sincroniza disponibilidad con las OTAs por iCal y detecta overbooking, pero no gestiona sus tarifas.</li>
+          <li>No responde todavía por Instagram ni por TikTok. Está en el plan, no en el producto.</li>
+          <li>No sustituye a nadie de tu equipo. Se ocupa de lo repetitivo para que tu gente esté con quien tiene delante.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 · CÓMO FUNCIONA ============ -->
+  <section class="oz-section oz-section--soft" id="como-funciona">
+    <div class="oz-inner">
+      <div class="oz-eyebrow">03 — Cómo funciona</div>
+      <h2 class="oz-title">De la llamada perdida a la mesa ocupada.</h2>
+      <div class="oz-steps">
+        <div class="oz-step">
+          <span class="oz-n">01</span>
+          <h3>Entra la llamada</h3>
+          <p>Por teléfono, WhatsApp o desde tu web. A cualquier hora, también fuera del horario de sala.</p>
+        </div>
+        <div class="oz-step">
+          <span class="oz-n">02</span>
+          <h3>Entiende qué te piden</h3>
+          <p>Cuántos son, qué día, a qué hora, si hay alergias, si quieren terraza. Y contesta las preguntas frecuentes de tu casa, configuradas contigo.</p>
+        </div>
+        <div class="oz-step">
+          <span class="oz-n">03</span>
+          <h3>Mira tu sala de verdad</h3>
+          <p>Comprueba mesas, turnos y aforo reales. No promete lo que no hay.</p>
+        </div>
+        <div class="oz-step">
+          <span class="oz-n">04</span>
+          <h3>Cierra la reserva</h3>
+          <p>La confirma, la registra y avisa a tu equipo. Si es un grupo o un evento, puede cobrar la señal.</p>
+        </div>
+        <div class="oz-step">
+          <span class="oz-n">05</span>
+          <h3>Recuerda y reduce el no-show</h3>
+          <p>Manda el recordatorio y recoge la confirmación. La mesa que no se va a ocupar, la sabes antes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 · CASO CLIENTE CERO ============ -->
+  <section class="oz-section" id="caso">
+    <div class="oz-inner oz-grid-2">
+      <div>
+        <div class="oz-sello">Cliente cero</div>
+        <h2 class="oz-title" style="margin-top:22px;">Lo probamos en <span class="oz-acento">nuestra casa</span> antes de vendértelo.</h2>
+        <p class="oz-intro">
+          <a href="https://www.sotodelprior.com" target="_blank" rel="noopener" style="color:var(--accent-2);border-bottom:1px solid var(--line);">SOTO del PRIOR</a>
+          es la hamburguesería de Carlos Jordán, socio de OTEYZERENA — mejor hamburguesa
+          de Navarra cinco años seguidos. Y
+          <a href="https://montaguoriginals.com" target="_blank" rel="noopener" style="color:var(--accent-2);border-bottom:1px solid var(--line);">MONTAGU</a>
+          es su sandwichería. No son clientes independientes y no te los vamos a vender
+          como si lo fueran: son los locales donde MuyBuenas lleva atendiendo llamadas
+          reales desde antes de existir como producto. Si algo falla, lo pagamos
+          nosotros primero.
+        </p>
+        <a class="oz-btn oz-btn--ghost" href="[[caso-completo]]">Ver el caso completo, con lo que no funcionó →</a>
+      </div>
+      <div>
+        <div class="oz-metrics" style="grid-template-columns:repeat(2,1fr);">
+          <div class="oz-metric"><strong>[[ ]]</strong><span>[[dato verificable — pendiente de medir en el piloto]]</span></div>
+          <div class="oz-metric"><strong>0 %</strong><span>de comisión por reserva</span></div>
+          <div class="oz-metric"><strong>24/7</strong><span>atención por voz, también de madrugada</span></div>
+          <div class="oz-metric"><strong>3</strong><span>canales en producción: voz, WhatsApp y web</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--warm-soft);margin-top:24px;">
+          Los datos de este caso proceden de nuestro propio local. Cuando tengamos
+          casos de clientes independientes, los verás etiquetados como tales.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · PRECIOS ============ -->
+  <section class="oz-section oz-section--soft" id="precios">
+    <div class="oz-inner">
+      <div class="oz-eyebrow">04 — Precios</div>
+      <h2 class="oz-title">Cuota plana por local. Nunca por cubierto.</h2>
+      <p class="oz-intro">
+        Las plataformas de reservas cobran por cada comensal que entra por su
+        enlace. Nosotros no traemos clientes que no eran tuyos: te ayudamos a no
+        perder los que ya te llamaban. Por eso se paga una cuota fija y no una
+        comisión. <strong>[[importes pendientes de la decisión de precio de Javier —
+        banda de mercado en benchmark §3.2]]</strong>
+      </p>
+      <div class="oz-prices">
+        <div class="oz-price">
+          <h3>Sala</h3>
+          <div class="oz-price-amount">[[ ]] <small>/ local al mes</small></div>
+          <ul>
+            <li>Atención por WhatsApp y web</li>
+            <li>Motor de reservas</li>
+            <li>Recordatorios automáticos</li>
+          </ul>
+          <a class="oz-btn oz-btn--ghost" href="#contacto">Pide una demo</a>
+        </div>
+        <div class="oz-price oz-price--featured">
+          <h3>Sala + Voz</h3>
+          <div class="oz-price-amount">[[ ]] <small>/ local al mes</small></div>
+          <ul>
+            <li>Todo lo anterior</li>
+            <li>Atención telefónica por voz, 24/7</li>
+            <li>Señal y cobro para grupos y eventos</li>
+          </ul>
+          <a class="oz-btn" href="#contacto">Pide una demo</a>
+        </div>
+        <div class="oz-price">
+          <h3>Varios locales</h3>
+          <div class="oz-price-amount">Por tramos</div>
+          <ul>
+            <li>Configuración propia por local</li>
+            <li>Implantación y formación incluidas</li>
+            <li>Hablamos y te lo ajustamos</li>
+          </ul>
+          <a class="oz-btn oz-btn--ghost" href="#contacto">Hablamos</a>
+        </div>
+      </div>
+      <p style="margin-top:28px;font-size:14px;color:var(--warm);">
+        [[Si se cierra el alta como Agente Digitalizador: mención a Kit Digital,
+        bono real 3.000–12.000 € según segmento. NO citar 29.000 €.]]
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 06 · FAQ ============ -->
+  <section class="oz-section">
+    <div class="oz-inner" style="max-width:900px;">
+      <div class="oz-eyebrow">05 — Preguntas</div>
+      <h2 class="oz-title">Lo que nos preguntan siempre.</h2>
+      <div class="oz-faq">
+        <details open>
+          <summary>¿Esto sustituye a alguien de mi equipo?</summary>
+          <p>No, y no queremos que lo haga. Se ocupa de lo repetitivo —coger el teléfono, repetir el horario, confirmar una mesa— para que tu gente esté entera con quien tiene delante. Lo que hace única a tu casa lo hacen personas.</p>
+        </details>
+        <details>
+          <summary>¿Me cobráis comisión por reserva?</summary>
+          <p>No. Cuota plana por local. Nunca por cubierto.</p>
+        </details>
+        <details>
+          <summary>¿De quién son los datos de mis clientes?</summary>
+          <p>Tuyos. Son portables y te los puedes llevar. No los comercializamos ni te cobramos por acceder a ellos.</p>
+        </details>
+        <details>
+          <summary>¿Se conecta con las plataformas de reservas que ya uso?</summary>
+          <p>Sincroniza disponibilidad con las OTAs por iCal y detecta overbooking. No es un channel manager: no gestiona sus tarifas ni sus campañas. Si eso es lo que necesitas hoy, te lo decimos en la primera llamada.</p>
+        </details>
+        <details>
+          <summary>¿Y si el cliente prefiere hablar con una persona?</summary>
+          <p>Pasa la llamada. [[verificar el comportamiento exacto de escalado con el equipo del bot antes de publicar]]</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 · CONTACTO ============ -->
+  <section class="oz-cta" id="contacto">
+    <div class="oz-inner" style="max-width:760px;">
+      <h2 class="oz-title">Te lo enseñamos con tu carta y tu sala.</h2>
+      <p>En la demo lo configuramos con tus horarios y tus preguntas frecuentes, y lo llamas tú mismo. Sin compromiso.</p>
+      <form class="oz-form" style="margin:0 auto;text-align:left;" action="[[endpoint — destino: CRM propio]]" method="post">
+        <div class="oz-field">
+          <label for="f-nombre">Nombre y restaurante</label>
+          <input id="f-nombre" name="nombre" type="text" required>
+        </div>
+        <div class="oz-field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" required>
+        </div>
+        <div class="oz-field">
+          <label for="f-tel">Teléfono</label>
+          <input id="f-tel" name="telefono" type="tel">
+        </div>
+        <label class="oz-consent">
+          <input type="checkbox" name="consentimiento" required>
+          <span>He leído y acepto la <a href="legal/privacidad.html" style="color:var(--accent-2);">política de privacidad</a> y que me contactéis para enseñarme el producto.</span>
+        </label>
+        <button class="oz-btn" type="submit">Pide una demo</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="oz-footer">
+  <div class="oz-footer-inner">
+    <div>
+      <div class="oz-brand">
+        <img class="oz-footer-logo" src="../assets/logo/wordmark.svg" width="87" height="28" alt="MuyBuenas">
+        <a class="oz-endoso" href="https://www.oteyzerena.com/" target="_blank" rel="noopener">by <strong>OTEYZERENA</strong></a>
+      </div>
+      <div style="margin-top:10px;">
+        Nacido en
+        <a href="https://www.sotodelprior.com" target="_blank" rel="noopener" style="color:var(--accent);">SOTO del PRIOR</a>
+        y
+        <a href="https://montaguoriginals.com" target="_blank" rel="noopener" style="color:var(--accent);">MONTAGU</a>.
+      </div>
+      <div style="margin-top:8px;">[[razón social: Jordazola SL]] · [[email]]</div>
+    </div>
+    <div class="oz-footer-links">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/privacidad.html">Privacidad</a>
+      <a href="legal/cookies.html">Cookies</a>
+      <a href="https://www.oteyzerena.com/" target="_blank" rel="noopener">OTEYZERENA</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Barra de CTA persistente: aparece al pasar la portada, se retira al
+     llegar al formulario. Va después del pie para que no se cuele en el
+     orden de lectura de un lector de pantalla. -->
+<div class="oz-stickybar" aria-hidden="true">
+  <p class="oz-stickybar-claim">
+    <strong>Te lo enseñamos con tu carta y tu sala.</strong>
+    <span>Sin comisión por cubierto</span>
+  </p>
+  <a class="oz-btn" href="#contacto">Pide una demo</a>
+</div>
+
+<script src="../assets/nav.js" defer></script>
+</body>
+</html>
