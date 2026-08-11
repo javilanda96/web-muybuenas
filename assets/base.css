@@ -240,6 +240,65 @@ a.oz-endoso:hover, a.oz-endoso:hover strong { color: var(--accent); }
 .oz-price li { padding: 10px 0; border-top: 1px solid var(--line); color: var(--warm); }
 .oz-price .oz-btn { margin-top: auto; }
 
+/* ---------- Calculadora ----------
+   Gancho de captación. Regla de honestidad: TODOS los números los pone el
+   hostelero. No hay ni una estadística de sector inventada por nosotros —
+   los valores de partida son solo una posición inicial del deslizador y
+   están rotulados como tal. El resultado es suyo, no una promesa nuestra. */
+.oz-calc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .85fr); gap: clamp(36px, 5vw, 64px); align-items: start; margin-top: 44px; }
+.oz-calc-campos { display: grid; gap: 26px; }
+.oz-calc-campo label { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 10px; }
+.oz-calc-campo .oz-calc-etiqueta { font-size: 15.5px; color: var(--paper); }
+.oz-calc-campo output {
+  font-family: var(--font-mono); font-size: 15px; color: var(--accent-on-dark);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+/* El área táctil (la caja del input, 32px) va separada del carril visible
+   (4px, pintado en el pseudo-elemento del track). Si se le da altura al
+   propio input y se pinta ahí el carril, en móvil solo hay 4px que agarrar
+   con el dedo — y esta es LA pieza interactiva de la página. */
+.oz-calc-campo input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 32px; margin: -6px 0;
+  background: transparent; outline: none; cursor: pointer;
+}
+.oz-calc-campo input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .18);
+}
+.oz-calc-campo input[type="range"]::-moz-range-track {
+  height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .18);
+}
+.oz-calc-campo input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 22px; height: 22px;
+  margin-top: -9px;              /* centra el pulgar sobre el carril de 4px */
+  border-radius: 50%; background: var(--accent); cursor: pointer;
+  border: 3px solid var(--ink); box-shadow: 0 0 0 1px var(--accent);
+}
+.oz-calc-campo input[type="range"]::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+  cursor: pointer; border: 3px solid var(--ink); box-shadow: 0 0 0 1px var(--accent);
+}
+.oz-calc-campo input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--accent-glow); }
+.oz-calc-campo input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px var(--accent-glow); }
+.oz-calc-nota { font-size: 13px; color: #aaa69d; margin: 4px 0 0; }
+
+.oz-calc-panel { background: rgba(255, 255, 255, .05); border: 1px solid var(--line-dark); border-radius: var(--radius-photo); padding: 32px 30px; position: sticky; top: 96px; }
+.oz-calc-panel-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #aaa69d; }
+.oz-calc-total {
+  font-family: var(--font-accent); font-size: clamp(3rem, 6vw, 4.4rem);
+  line-height: 1; color: var(--accent-on-dark); margin: 12px 0 4px;
+  font-variant-numeric: tabular-nums; letter-spacing: var(--accent-tracking);
+}
+.oz-calc-periodo { font-size: 14.5px; color: #aaa69d; margin: 0 0 26px; }
+.oz-calc-desglose { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-dark); }
+.oz-calc-desglose li { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line-dark); font-size: 14.5px; color: #c7c3b9; }
+.oz-calc-desglose b { color: var(--paper); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.oz-calc-pie { font-size: 13px; color: #aaa69d; margin: 22px 0 0; }
+@media (max-width: 900px) {
+  .oz-calc { grid-template-columns: 1fr; }
+  .oz-calc-panel { position: static; }
+}
+
 /* ---------- FAQ ---------- */
 .oz-faq { border-top: 1px solid var(--line); margin-top: 40px; }
 .oz-faq details { border-bottom: 1px solid var(--line); }

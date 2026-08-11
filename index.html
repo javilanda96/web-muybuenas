@@ -7,9 +7,10 @@
   aplicado. Sirve para (a) ver la paleta en movimiento y (b) fijar la
   arquitectura de la página antes de escribir el copy definitivo.
 
-  QUÉ NO ES: copy final. El texto de aquí es §12-seguro y está sacado de
-  material verificado (INFORME §5 y PRODUCT_DIRECTION.md de MuyBuenas),
-  pero el redactado publicable lo hace `web-copy`.
+  COPY: reescrito el 2026-08-11 a partir de una auditoría de código de
+  los repos `reservas-oteyzerena` y `bot-oteyzerena`. Cada capacidad que
+  se afirma aquí está verificada en código, no sacada del README. Ver
+  marketing/web/auditoria-capacidades-vs-copy.md para la trazabilidad.
 
   MARCADORES: todo lo que va entre [[ ]] es una decisión pendiente.
 
@@ -20,8 +21,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MuyBuenas · Atiende y reserva por ti, sin comisiones</title>
-<meta name="description" content="MuyBuenas atiende el teléfono, WhatsApp y tu web, comprueba la disponibilidad real de tu sala y confirma la reserva. Sin comisión por cubierto.">
+<title>MuyBuenas · Contesta, reserva y cobra el no-show. Sin comisiones</title>
+<meta name="description" content="Contesta el teléfono, WhatsApp y tu web a cualquier hora. Comprueba tu sala de verdad, retiene la tarjeta del que no viene y rellena solo las cancelaciones. 0% de comisión por reserva.">
 <!-- Pinta la barra de dirección/estado del navegador móvil. Tenía el tinta
      oscuro (#23201c) puesto por descuido: eso creaba un salto de color
      arriba de la pantalla, con el cuerpo de la página siempre claro debajo.
@@ -35,8 +36,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MuyBuenas">
 <meta property="og:locale" content="es_ES">
-<meta property="og:title" content="MuyBuenas · Atiende y reserva por ti, sin comisiones">
-<meta property="og:description" content="Atiende el teléfono, WhatsApp y tu web, comprueba disponibilidad real y confirma la reserva. Sin comisión por cubierto.">
+<meta property="og:title" content="MuyBuenas · Contesta, reserva y cobra el no-show. Sin comisiones">
+<meta property="og:description" content="Calcula lo que te cuesta el teléfono que no coges. Y lo que dejas de perder cuando alguien lo contesta siempre.">
 <meta property="og:url" content="[[dominio]]/">
 <meta property="og:image" content="[[dominio]]/assets/brand/muybuenas-social-card.png">
 <meta property="og:image:width" content="1200">
@@ -60,7 +61,7 @@
   "name": "MuyBuenas",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "description": "Atención y motor de reservas para restaurantes: responde por teléfono, WhatsApp y web, comprueba disponibilidad real y confirma la reserva sin comisión por cubierto.",
+  "description": "Atención y motor de reservas para restaurantes: responde por teléfono, WhatsApp y web, comprueba disponibilidad real, retiene la tarjeta del no-show y gestiona la lista de espera. Sin comisión por cubierto.",
   "publisher": { "@type": "Organization", "name": "OTEYZERENA", "url": "https://www.oteyzerena.com/" },
   "areaServed": "ES"
 }
@@ -81,8 +82,8 @@
       <span></span><span></span>
     </button>
     <div class="oz-nav-links" id="oz-nav-links">
+      <a href="#calculadora">Calculadora</a>
       <a href="#que-hace">Qué hace</a>
-      <a href="#como-funciona">Cómo funciona</a>
       <a href="#caso">Caso real</a>
       <a href="#precios">Precios</a>
       <a class="oz-btn" href="#contacto">Pide una demo</a>
@@ -96,15 +97,15 @@
   <section class="oz-hero">
     <div>
       <div class="oz-eyebrow">Atención y reservas para restaurantes</div>
-      <h1>Deja de perder reservas por <span class="oz-acento">no coger el teléfono</span>.</h1>
+      <h1>La llamada que no coges <span class="oz-acento">cena enfrente</span>.</h1>
       <p class="oz-lead">
-        MuyBuenas atiende por teléfono, por WhatsApp y desde tu web. Consulta la
-        disponibilidad real de tu sala, confirma la reserva y envía el recordatorio.
-        A las tres de la tarde con el comedor lleno, y a las tres de la madrugada.
+        MuyBuenas contesta el teléfono, el WhatsApp y tu web a cualquier hora.
+        Mira tu sala de verdad antes de decir que sí, cierra la reserva y retiene
+        la tarjeta para que el que no aparece no te salga gratis.
       </p>
       <div class="oz-hero-actions">
-        <a class="oz-btn" href="#contacto">Pide una demo</a>
-        <a class="oz-btn oz-btn--ghost" href="#como-funciona">Ver cómo funciona</a>
+        <a class="oz-btn" href="#calculadora">Calcula lo que pierdes</a>
+        <a class="oz-btn oz-btn--ghost" href="#contacto">Pide una demo</a>
       </div>
       <p style="margin-top:26px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-soft);">
         Sin comisión por cubierto · La reserva es tuya · Tus datos son tuyos
@@ -151,56 +152,150 @@
     </div>
   </section>
 
-  <!-- ============ 01 · EL PROBLEMA ============ -->
-  <section class="oz-section oz-section--dark">
+  <!-- ============ 01 · CALCULADORA ============
+       El gancho. Todos los números los pone el hostelero: no hay ni una
+       estadística de sector inventada por nosotros. Los valores de partida
+       están rotulados como punto de partida, no como dato del sector.
+       El HTML trae el resultado ya calculado para esos valores, así que
+       la sección tiene sentido aunque el JS no cargue. -->
+  <section class="oz-section oz-section--dark" id="calculadora" data-calculadora>
+    <div class="oz-inner">
+      <div class="oz-eyebrow">01 — Échale un número</div>
+      <h2 class="oz-title">¿Cuánto te cuesta al año <span class="oz-acento">el teléfono que no coges</span>?</h2>
+      <p class="oz-intro">
+        Mueve los deslizadores con los datos de tu casa. No usamos medias del
+        sector ni estudios de nadie: el número que salga es el tuyo, hecho con
+        lo que tú sabes de tu negocio.
+      </p>
+
+      <div class="oz-calc">
+        <div class="oz-calc-campos">
+          <div class="oz-calc-campo">
+            <label for="calc-llamadas">
+              <span class="oz-calc-etiqueta">Llamadas que se quedan sin contestar</span>
+              <output id="out-llamadas" for="calc-llamadas">10 a la semana</output>
+            </label>
+            <input type="range" id="calc-llamadas" min="0" max="40" step="1" value="10">
+          </div>
+
+          <div class="oz-calc-campo">
+            <label for="calc-no-vuelven">
+              <span class="oz-calc-etiqueta">De cada 10 que no te cogen, cuántos no vuelven a llamar</span>
+              <output id="out-no-vuelven" for="calc-no-vuelven">5 de cada 10</output>
+            </label>
+            <input type="range" id="calc-no-vuelven" min="0" max="10" step="1" value="5">
+          </div>
+
+          <div class="oz-calc-campo">
+            <label for="calc-personas">
+              <span class="oz-calc-etiqueta">Personas por reserva, de media</span>
+              <output id="out-personas" for="calc-personas">3 personas</output>
+            </label>
+            <input type="range" id="calc-personas" min="1" max="10" step="1" value="3">
+          </div>
+
+          <div class="oz-calc-campo">
+            <label for="calc-ticket">
+              <span class="oz-calc-etiqueta">Lo que se deja cada persona</span>
+              <output id="out-ticket" for="calc-ticket">25 € por persona</output>
+            </label>
+            <input type="range" id="calc-ticket" min="8" max="120" step="1" value="25">
+          </div>
+
+          <div class="oz-calc-campo">
+            <label for="calc-no-shows">
+              <span class="oz-calc-etiqueta">Reservas que no aparecen (no-shows)</span>
+              <output id="out-no-shows" for="calc-no-shows">6 al mes</output>
+            </label>
+            <input type="range" id="calc-no-shows" min="0" max="60" step="1" value="6">
+            <p class="oz-calc-nota">Los valores de partida son solo un punto por donde empezar a mover. Pon los tuyos.</p>
+          </div>
+        </div>
+
+        <div class="oz-calc-panel">
+          <div class="oz-calc-panel-label">Se te escapa al año</div>
+          <p class="oz-calc-total" id="calc-total">24.900 €</p>
+          <p class="oz-calc-periodo">con los datos que has puesto</p>
+          <ul class="oz-calc-desglose">
+            <li><span>Por llamadas sin contestar</span> <b id="calc-por-telefono">19.500 €</b></li>
+            <li><span>Por mesas que no aparecen</span> <b id="calc-por-no-show">5.400 €</b></li>
+            <li><span>Reservas perdidas al año</span> <b id="calc-reservas-perdidas">260</b></li>
+          </ul>
+          <p class="oz-calc-pie">
+            No todo eso es recuperable, y no te vamos a decir que lo sea. Pero
+            una parte grande se pierde solo porque no había nadie para descolgar.
+          </p>
+          <a class="oz-btn oz-btn--light" href="#contacto" style="margin-top:22px;width:100%;">Enséñamelo con mi carta</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 · EL PROBLEMA ============ -->
+  <section class="oz-section">
     <div class="oz-inner oz-grid-2">
       <div>
-        <div class="oz-eyebrow">01 — El problema</div>
+        <div class="oz-eyebrow">02 — Por qué pasa</div>
         <h2 class="oz-title">El teléfono suena justo cuando no puedes cogerlo.</h2>
       </div>
       <div>
         <p class="oz-intro" style="margin-top:0">
-          La llamada entra en pleno servicio, o fuera de horario, o mientras estás
-          en la cocina. Quien no encuentra respuesta no vuelve a llamar: llama al
-          de al lado. Y las plataformas que sí cogen ese teléfono te cobran por
-          cada cubierto que ya era tuyo.
+          Entra en pleno servicio, o a las once de la noche, o mientras estás
+          descargando el género. Quien no encuentra respuesta rara vez vuelve a
+          llamar: llama al de al lado. Y las plataformas que sí cogen ese teléfono
+          te cobran por un cliente que ya era tuyo.
         </p>
         <ul class="oz-list">
-          <li>Llamadas perdidas en las horas de más servicio.</li>
-          <li>Mensajes de WhatsApp contestados horas después.</li>
-          <li>La agenda en papel y la web diciendo cosas distintas.</li>
-          <li>Mesas vacías por no-shows que nadie confirmó.</li>
-          <li>Comisión por cada reserva, aunque el cliente ya fuera tuyo.</li>
+          <li>Las llamadas se amontonan en las dos horas de más lío.</li>
+          <li>El WhatsApp se contesta cuando se puede, no cuando llega.</li>
+          <li>La libreta dice una cosa y la web dice otra.</li>
+          <li>El que no aparece no paga nada, y esa mesa ya no se vende.</li>
+          <li>Comisión por cada reserva, aunque el cliente viniera por su cuenta.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- ============ 02 · QUÉ HACE ============ -->
-  <section class="oz-section" id="que-hace">
+  <!-- ============ 03 · QUÉ HACE ============ -->
+  <section class="oz-section oz-section--soft" id="que-hace">
     <div class="oz-inner">
-      <div class="oz-eyebrow">02 — Qué hace</div>
-      <h2 class="oz-title">Atiende, comprueba y confirma. Las tres cosas.</h2>
+      <div class="oz-eyebrow">03 — Qué hace</div>
+      <h2 class="oz-title">Seis cosas que hoy le quitan tiempo o dinero a alguien de tu equipo.</h2>
       <p class="oz-intro">
         No es un contestador con un mensaje grabado ni un formulario que alguien
-        tiene que repasar después. Habla, entiende lo que le piden, mira la
-        disponibilidad real y cierra la reserva.
+        tiene que repasar después. Todo lo de aquí abajo está funcionando hoy en
+        un restaurante de verdad.
       </p>
       <div class="oz-grid-3">
         <div class="oz-panel">
           <div class="oz-num">01</div>
-          <h3>Atiende</h3>
-          <p>Por teléfono con voz, por WhatsApp y desde el widget de tu web. Responde también las preguntas de siempre: horarios, alérgenos, si hay terraza, si se puede ir con niños.</p>
+          <h3>Contesta siempre</h3>
+          <p>Por teléfono, WhatsApp y desde tu web. Ya sabe quién llama antes de que hable, así que no pide el número. Y entiende «el finde» o «sobre las nueve» como lo entendería tu jefe de sala.</p>
         </div>
         <div class="oz-panel">
           <div class="oz-num">02</div>
-          <h3>Comprueba</h3>
-          <p>Consulta la disponibilidad real de tu sala antes de decir que sí. Nada de confirmar una mesa que no existe y arreglarlo luego por teléfono.</p>
+          <h3>Mira tu sala de verdad</h3>
+          <p>Comprueba aforo y turnos reales antes de decir que sí. No confirma dos veces la misma mesa, y respeta los días que tú cierres: vacaciones, un festivo, un privado.</p>
         </div>
         <div class="oz-panel">
           <div class="oz-num">03</div>
-          <h3>Confirma y recuerda</h3>
-          <p>Cierra la reserva, la manda a tu agenda y envía el recordatorio. Si lo necesitas, puede pedir señal para grupos o eventos.</p>
+          <h3>Cobra si no aparecen</h3>
+          <p>Al reservar se puede retener la tarjeta. Si no se presentan, se cobra el importe que tú hayas fijado — con su justificante y su mandato firmado. Tú decides cuánto, y a quién se lo perdonas.</p>
+        </div>
+        <div class="oz-panel">
+          <div class="oz-num">04</div>
+          <h3>Rellena las cancelaciones</h3>
+          <p>Cuando alguien cancela, avisa solo al primero de la lista de espera. Sin que nadie de tu equipo descuelgue el teléfono ni se acuerde de llamar.</p>
+        </div>
+        <div class="oz-panel">
+          <div class="oz-num">05</div>
+          <h3>Te trae reseñas buenas</h3>
+          <p>Pregunta qué tal fue después de la visita e invita a reseñar en Google solo a quien salió contento. Si alguien puntúa bajo, te avisa a ti para que le llames — antes de que lo escriba internet.</p>
+        </div>
+        <div class="oz-panel">
+          <div class="oz-num">06</div>
+          <h3>Sabe cuándo callarse</h3>
+          <p>Si la conversación se atasca, pide el teléfono, te manda la charla entera y se aparta para que la coja una persona. Nadie se queda dando vueltas con un robot.</p>
         </div>
       </div>
 
@@ -212,51 +307,51 @@
           Preferimos decírtelo nosotros antes de que lo descubras tú.
         </p>
         <ul class="oz-list">
-          <li>No es un channel manager: sincroniza disponibilidad con las OTAs por iCal y detecta overbooking, pero no gestiona sus tarifas.</li>
-          <li>No responde todavía por Instagram ni por TikTok. Está en el plan, no en el producto.</li>
-          <li>No sustituye a nadie de tu equipo. Se ocupa de lo repetitivo para que tu gente esté con quien tiene delante.</li>
+          <li>No es un channel manager: mira la disponibilidad de las OTAs para avisarte de solapes, pero no toca sus tarifas ni sus campañas.</li>
+          <li>No responde por Instagram ni por TikTok. Está en el plan, no en el producto.</li>
+          <li>No sustituye a nadie de tu equipo. Se ocupa de lo repetitivo para que tu gente esté entera con quien tiene delante.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- ============ 03 · CÓMO FUNCIONA ============ -->
-  <section class="oz-section oz-section--soft" id="como-funciona">
+  <!-- ============ 04 · CÓMO FUNCIONA ============ -->
+  <section class="oz-section" id="como-funciona">
     <div class="oz-inner">
-      <div class="oz-eyebrow">03 — Cómo funciona</div>
+      <div class="oz-eyebrow">04 — Cómo funciona</div>
       <h2 class="oz-title">De la llamada perdida a la mesa ocupada.</h2>
       <div class="oz-steps">
         <div class="oz-step">
           <span class="oz-n">01</span>
           <h3>Entra la llamada</h3>
-          <p>Por teléfono, WhatsApp o desde tu web. A cualquier hora, también fuera del horario de sala.</p>
+          <p>Por teléfono, WhatsApp o desde tu web. A cualquier hora, también cuando la sala está cerrada.</p>
         </div>
         <div class="oz-step">
           <span class="oz-n">02</span>
-          <h3>Entiende qué te piden</h3>
-          <p>Cuántos son, qué día, a qué hora, si hay alergias, si quieren terraza. Y contesta las preguntas frecuentes de tu casa, configuradas contigo.</p>
+          <h3>Entiende qué le piden</h3>
+          <p>Cuántos son, qué día, a qué hora, si hay alergias. Y contesta las preguntas de siempre con lo que tú le hayas dicho de tu casa — nunca se lo inventa.</p>
         </div>
         <div class="oz-step">
           <span class="oz-n">03</span>
-          <h3>Mira tu sala de verdad</h3>
-          <p>Comprueba mesas, turnos y aforo reales. No promete lo que no hay.</p>
+          <h3>Comprueba antes de prometer</h3>
+          <p>Mira aforo, turnos y cierres reales. Si no hay hueco, ofrece lista de espera en vez de colgar.</p>
         </div>
         <div class="oz-step">
           <span class="oz-n">04</span>
           <h3>Cierra la reserva</h3>
-          <p>La confirma, la registra y avisa a tu equipo. Si es un grupo o un evento, puede cobrar la señal.</p>
+          <p>La confirma, la registra y avisa a tu equipo. Si es un grupo grande, la deja pendiente de que la apruebes tú.</p>
         </div>
         <div class="oz-step">
           <span class="oz-n">05</span>
-          <h3>Recuerda y reduce el no-show</h3>
-          <p>Manda el recordatorio y recoge la confirmación. La mesa que no se va a ocupar, la sabes antes.</p>
+          <h3>Recuerda, y cobra si no vienen</h3>
+          <p>Avisa a las 24 horas y a las 2 horas. Si aun así no aparecen, la garantía que fijaste se cobra sola.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 04 · CASO CLIENTE CERO ============ -->
-  <section class="oz-section" id="caso">
+  <!-- ============ 05 · CASO CLIENTE CERO ============ -->
+  <section class="oz-section oz-section--soft" id="caso">
     <div class="oz-inner oz-grid-2">
       <div>
         <div class="oz-sello">Cliente cero</div>
@@ -288,15 +383,15 @@
     </div>
   </section>
 
-  <!-- ============ 05 · PRECIOS ============ -->
-  <section class="oz-section oz-section--soft" id="precios">
+  <!-- ============ 06 · PRECIOS ============ -->
+  <section class="oz-section" id="precios">
     <div class="oz-inner">
-      <div class="oz-eyebrow">04 — Precios</div>
-      <h2 class="oz-title">Cuota plana por local. Nunca por cubierto.</h2>
+      <div class="oz-eyebrow">05 — Precios</div>
+      <h2 class="oz-title">Cuota plana por local. <span class="oz-acento">Nunca por cubierto</span>.</h2>
       <p class="oz-intro">
         Las plataformas de reservas cobran por cada comensal que entra por su
-        enlace. Nosotros no traemos clientes que no eran tuyos: te ayudamos a no
-        perder los que ya te llamaban. Por eso se paga una cuota fija y no una
+        enlace. Nosotros no te traemos clientes que no eran tuyos: te ayudamos a
+        no perder los que ya te llamaban. Por eso se paga una cuota fija y no una
         comisión. <strong>[[importes pendientes de la decisión de precio de Javier —
         banda de mercado en benchmark §3.2]]</strong>
       </p>
@@ -306,7 +401,7 @@
           <div class="oz-price-amount">[[ ]] <small>/ local al mes</small></div>
           <ul>
             <li>Atención por WhatsApp y web</li>
-            <li>Motor de reservas</li>
+            <li>Motor de reservas y lista de espera</li>
             <li>Recordatorios automáticos</li>
           </ul>
           <a class="oz-btn oz-btn--ghost" href="#contacto">Pide una demo</a>
@@ -317,7 +412,7 @@
           <ul>
             <li>Todo lo anterior</li>
             <li>Atención telefónica por voz, 24/7</li>
-            <li>Señal y cobro para grupos y eventos</li>
+            <li>Garantía de no-show y señal para grupos</li>
           </ul>
           <a class="oz-btn" href="#contacto">Pide una demo</a>
         </div>
@@ -339,15 +434,31 @@
     </div>
   </section>
 
-  <!-- ============ 06 · FAQ ============ -->
-  <section class="oz-section">
+  <!-- ============ 07 · FAQ ============ -->
+  <section class="oz-section oz-section--soft">
     <div class="oz-inner" style="max-width:900px;">
-      <div class="oz-eyebrow">05 — Preguntas</div>
+      <div class="oz-eyebrow">06 — Preguntas</div>
       <h2 class="oz-title">Lo que nos preguntan siempre.</h2>
       <div class="oz-faq">
         <details open>
           <summary>¿Esto sustituye a alguien de mi equipo?</summary>
           <p>No, y no queremos que lo haga. Se ocupa de lo repetitivo —coger el teléfono, repetir el horario, confirmar una mesa— para que tu gente esté entera con quien tiene delante. Lo que hace única a tu casa lo hacen personas.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa si alguien reserva y no viene?</summary>
+          <p>Se le puede retener la tarjeta al reservar. Si no se presenta, se cobra el importe de garantía que tú hayas fijado, sin que tengas que perseguir a nadie. Y a los clientes de siempre puedes marcarlos para que nunca se les pida tarjeta.</p>
+        </details>
+        <details>
+          <summary>¿Puede confirmar solo una mesa de 40 personas sin que yo me entere?</summary>
+          <p>No. Tú marcas a partir de cuántos comensales quieres aprobarlo tú mismo, y por encima de ese número la reserva se queda esperando tu visto bueno.</p>
+        </details>
+        <details>
+          <summary>¿Y si el cliente prefiere hablar con una persona?</summary>
+          <p>Pasa la llamada. Y si detecta que la conversación se está atascando, no insiste: pide el teléfono, os manda la conversación entera y se calla hasta que alguien de tu equipo la retome.</p>
+        </details>
+        <details>
+          <summary>¿Pedís opinión aunque el cliente se haya quejado?</summary>
+          <p>Al revés. Solo se invita a reseñar en Google a quien salió contento. Si alguien puntúa bajo, te avisamos a ti primero — para que le llames, no para que lo lea todo el mundo.</p>
         </details>
         <details>
           <summary>¿Me cobráis comisión por reserva?</summary>
@@ -359,17 +470,13 @@
         </details>
         <details>
           <summary>¿Se conecta con las plataformas de reservas que ya uso?</summary>
-          <p>Sincroniza disponibilidad con las OTAs por iCal y detecta overbooking. No es un channel manager: no gestiona sus tarifas ni sus campañas. Si eso es lo que necesitas hoy, te lo decimos en la primera llamada.</p>
-        </details>
-        <details>
-          <summary>¿Y si el cliente prefiere hablar con una persona?</summary>
-          <p>Pasa la llamada. [[verificar el comportamiento exacto de escalado con el equipo del bot antes de publicar]]</p>
+          <p>Mira su disponibilidad para avisarte de solapes y evitar overbooking. No gestiona sus tarifas ni sus campañas: no es un channel manager. Si eso es lo que necesitas hoy, te lo decimos en la primera llamada.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- ============ 07 · CONTACTO ============ -->
+  <!-- ============ 08 · CONTACTO ============ -->
   <section class="oz-cta" id="contacto">
     <div class="oz-inner" style="max-width:760px;">
       <h2 class="oz-title">Te lo enseñamos con tu carta y tu sala.</h2>
@@ -434,5 +541,6 @@
 </div>
 
 <script src="assets/nav.js" defer></script>
+<script src="assets/calculadora.js" defer></script>
 </body>
 </html>
