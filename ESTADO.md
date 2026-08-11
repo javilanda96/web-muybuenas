@@ -6,18 +6,20 @@ compartido de webs de producto de OTEYZERENA.
 
 ## Cómo verla
 
-Es HTML/CSS estático, sin build. Con Python instalado:
+**Vista previa pública (de revisión, no la definitiva):** [se añade el enlace real tras activar GitHub Pages]. Bloqueada para buscadores (`robots.txt` + `noindex`) porque tiene datos de ejemplo — no es para compartir fuera del equipo.
+
+En local, sin build:
 
 ```bash
 py -m http.server 8099
 ```
 
-Luego abrir `http://localhost:8099/plantillas/muybuenas-home.html`.
+Luego abrir `http://localhost:8099/`.
 
-## Qué falta antes de poder publicarla (importante para Carlos)
+## Qué falta antes de poder publicarla de verdad (importante para Carlos)
 
 1. **Dominio** — decisión pendiente de Carlos: dominio propio (`muybuenas.es`)
-   vs. subdominio de `oteyzerena.com`. Ver `plantillas/legal/DATOS-PENDIENTES.md`.
+   vs. subdominio de `oteyzerena.com`. Ver `legal/DATOS-PENDIENTES.md`.
 2. **Datos legales reales** — razón social, NIF, domicilio, email. Ninguna
    página legal se publica sin esto y sin revisión de alguien con criterio
    jurídico.
@@ -31,8 +33,8 @@ Luego abrir `http://localhost:8099/plantillas/muybuenas-home.html`.
 
 ## Estructura
 
-- `plantillas/muybuenas-home.html` — la home.
-- `plantillas/legal/` — aviso legal, privacidad, cookies (con datos pendientes).
+- `index.html` — la home.
+- `legal/` — aviso legal, privacidad, cookies (con datos pendientes).
 - `assets/tokens.css` — la paleta de marca (tres variantes, ver el propio
   fichero).
 - `assets/logo/` — logotipo vectorial de MuyBuenas, con su README explicando
