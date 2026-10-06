@@ -63,7 +63,15 @@
   "operatingSystem": "Web",
   "description": "Atención y motor de reservas para restaurantes: responde por teléfono, WhatsApp y web, comprueba disponibilidad real, retiene la tarjeta del no-show y gestiona la lista de espera. Sin comisión por cubierto.",
   "publisher": { "@type": "Organization", "name": "OTEYZERENA", "url": "https://www.oteyzerena.com/" },
-  "areaServed": "ES"
+  "areaServed": "ES",
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "89",
+    "highPrice": "329",
+    "offerCount": "3",
+    "priceCurrency": "EUR",
+    "description": "Cuota mensual por local, sin IVA, sin comisión por reserva. Tres planes."
+  }
 }
 </script>
 </head>
@@ -268,32 +276,32 @@
       </p>
       <div class="oz-grid-3">
         <div class="oz-panel">
-          <div class="oz-num">01</div>
+          <div class="oz-num">01 · Plan Atención</div>
           <h3>Contesta siempre</h3>
           <p>Por teléfono, WhatsApp y desde tu web. Ya sabe quién llama antes de que hable, así que no pide el número. Y entiende «el finde» o «sobre las nueve» como lo entendería tu jefe de sala.</p>
         </div>
         <div class="oz-panel">
-          <div class="oz-num">02</div>
+          <div class="oz-num">02 · En los tres planes</div>
           <h3>Mira tu sala de verdad</h3>
           <p>Comprueba aforo y turnos reales antes de decir que sí. No confirma dos veces la misma mesa, y respeta los días que tú cierres: vacaciones, un festivo, un privado.</p>
         </div>
         <div class="oz-panel">
-          <div class="oz-num">03</div>
+          <div class="oz-num">03 · Desde el plan Distribución</div>
           <h3>Cobra si no aparecen</h3>
           <p>Al reservar se puede retener la tarjeta. Si no se presentan, se cobra el importe que tú hayas fijado — con su justificante y su mandato firmado. Tú decides cuánto, y a quién se lo perdonas.</p>
         </div>
         <div class="oz-panel">
-          <div class="oz-num">04</div>
+          <div class="oz-num">04 · En los tres planes</div>
           <h3>Rellena las cancelaciones</h3>
           <p>Cuando alguien cancela, avisa solo al primero de la lista de espera. Sin que nadie de tu equipo descuelgue el teléfono ni se acuerde de llamar.</p>
         </div>
         <div class="oz-panel">
-          <div class="oz-num">05</div>
+          <div class="oz-num">05 · En los tres planes</div>
           <h3>Te trae reseñas buenas</h3>
           <p>Pregunta qué tal fue después de la visita e invita a reseñar en Google solo a quien salió contento. Si alguien puntúa bajo, te avisa a ti para que le llames — antes de que lo escriba internet.</p>
         </div>
         <div class="oz-panel">
-          <div class="oz-num">06</div>
+          <div class="oz-num">06 · Plan Atención</div>
           <h3>Sabe cuándo callarse</h3>
           <p>Si la conversación se atasca, pide el teléfono, te manda la charla entera y se aparta para que la coja una persona. Nadie se queda dando vueltas con un robot.</p>
         </div>
@@ -392,40 +400,56 @@
         Las plataformas de reservas cobran por cada comensal que entra por su
         enlace. Nosotros no te traemos clientes que no eran tuyos: te ayudamos a
         no perder los que ya te llamaban. Por eso se paga una cuota fija y no una
-        comisión. <strong>[[importes pendientes de la decisión de precio de Javier —
-        banda de mercado en benchmark §3.2]]</strong>
+        comisión. Tres planes, según lo que necesite tu casa.
       </p>
       <div class="oz-prices">
+        <!-- tarifa:planes (generado por scripts/precios.mjs; no editar a mano) -->
         <div class="oz-price">
-          <h3>Sala</h3>
-          <div class="oz-price-amount">[[ ]] <small>/ local al mes</small></div>
+          <h3>Directo</h3>
+          <div class="oz-price-amount">89 € <small>/ local al mes · sin IVA</small></div>
+          <p class="oz-price-para">Restaurante o alojamiento pequeño</p>
           <ul>
-            <li>Atención por WhatsApp y web</li>
-            <li>Motor de reservas y lista de espera</li>
-            <li>Recordatorios automáticos</li>
+            <li>Reservas de restaurante (zonas, mesas, turnos, lista de espera)</li>
+            <li>Reservas de alojamiento (huésped, habitaciones, estados, histórico)</li>
+            <li>Inventario de alojamiento (tipos de habitación, habitaciones)</li>
+            <li>Formulario público configurable en la web propia</li>
+            <li>Panel de gestión, calendario y planning de ocupación</li>
+            <li>Avisos al cliente y correo del propio establecimiento</li>
+            <li>Ficha de cliente y valoración post-visita</li>
+            <li>Alta de establecimiento sin consultoría</li>
+            <li>Multi-local y permisos por local</li>
+            <li>Confirmación por correo desde el buzón del propio local</li>
           </ul>
           <a class="oz-btn oz-btn--ghost" href="#contacto">Pide una demo</a>
         </div>
-        <div class="oz-price oz-price--featured">
-          <h3>Sala + Voz</h3>
-          <div class="oz-price-amount">[[ ]] <small>/ local al mes</small></div>
+        <div class="oz-price">
+          <h3>Distribución</h3>
+          <div class="oz-price-amount">179 € <small>/ local al mes · sin IVA</small></div>
+          <p class="oz-price-para">Alojamiento que vende por portales</p>
           <ul>
-            <li>Todo lo anterior</li>
-            <li>Atención telefónica por voz, 24/7</li>
-            <li>Garantía de no-show y señal para grupos</li>
+            <li>Todo lo del plan Directo</li>
+            <li>Tarifas, temporadas, precios diarios y restricciones</li>
+            <li>Sincronización de calendarios con portales (iCal)</li>
+            <li>Cobros con pasarela, retención de tarjeta y política de no-show</li>
+            <li>Códigos promocionales y niveles de fidelidad</li>
+            <li>Eventos y grupos con aforo</li>
           </ul>
-          <a class="oz-btn" href="#contacto">Pide una demo</a>
+          <a class="oz-btn oz-btn--ghost" href="#contacto">Pide una demo</a>
         </div>
         <div class="oz-price">
-          <h3>Varios locales</h3>
-          <div class="oz-price-amount">Por tramos</div>
+          <h3>Atención</h3>
+          <div class="oz-price-amount">329 € <small>/ local al mes · sin IVA</small></div>
+          <p class="oz-price-para">Sin personal para el teléfono</p>
           <ul>
-            <li>Configuración propia por local</li>
-            <li>Implantación y formación incluidas</li>
-            <li>Hablamos y te lo ajustamos</li>
+            <li>Todo lo del plan Distribución</li>
+            <li>Sofía — WhatsApp, voz telefónica y web</li>
+            <li>Recordatorios por WhatsApp (solo reservas entradas por Sofía)</li>
+            <li>Registro de conversaciones y contabilidad de uso de IA</li>
+            <li>Más el uso de IA, repercutido a coste</li>
           </ul>
-          <a class="oz-btn oz-btn--ghost" href="#contacto">Hablamos</a>
+          <a class="oz-btn oz-btn--ghost" href="#contacto">Pide una demo</a>
         </div>
+        <!-- /tarifa:planes -->
       </div>
       <p style="margin-top:28px;font-size:14px;color:var(--warm);">
         [[Si se cierra el alta como Agente Digitalizador: mención a Kit Digital,
@@ -446,7 +470,7 @@
         </details>
         <details>
           <summary>¿Qué pasa si alguien reserva y no viene?</summary>
-          <p>Se le puede retener la tarjeta al reservar. Si no se presenta, se cobra el importe de garantía que tú hayas fijado, sin que tengas que perseguir a nadie. Y a los clientes de siempre puedes marcarlos para que nunca se les pida tarjeta.</p>
+          <p>Desde el plan Distribución, se le puede retener la tarjeta al reservar. Si no se presenta, se cobra el importe de garantía que tú hayas fijado, sin que tengas que perseguir a nadie. Y a los clientes de siempre puedes marcarlos para que nunca se les pida tarjeta.</p>
         </details>
         <details>
           <summary>¿Puede confirmar solo una mesa de 40 personas sin que yo me entere?</summary>

@@ -1,0 +1,126 @@
+{
+  "version": "2026-09-11",
+  "ivaIncluido": false,
+  "unidad": "local",
+  "planes": [
+    {
+      "id": "directo",
+      "nombre": "Directo",
+      "precio": 89,
+      "paraQuien": "Restaurante o alojamiento pequeño"
+    },
+    {
+      "id": "distribucion",
+      "nombre": "Distribución",
+      "precio": 179,
+      "paraQuien": "Alojamiento que vende por portales"
+    },
+    {
+      "id": "atencion",
+      "nombre": "Atención",
+      "precio": 329,
+      "paraQuien": "Sin personal para el teléfono",
+      "extras": [
+        "ia-repercutida"
+      ]
+    }
+  ],
+  "modulos": [
+    {
+      "id": "reservas-restaurante",
+      "nombre": "Reservas de restaurante (zonas, mesas, turnos, lista de espera)",
+      "desde": "directo"
+    },
+    {
+      "id": "reservas-alojamiento",
+      "nombre": "Reservas de alojamiento (huésped, habitaciones, estados, histórico)",
+      "desde": "directo"
+    },
+    {
+      "id": "inventario-alojamiento",
+      "nombre": "Inventario de alojamiento (tipos de habitación, habitaciones)",
+      "desde": "directo"
+    },
+    {
+      "id": "formulario-publico",
+      "nombre": "Formulario público configurable en la web propia",
+      "desde": "directo"
+    },
+    {
+      "id": "panel-calendario",
+      "nombre": "Panel de gestión, calendario y planning de ocupación",
+      "desde": "directo"
+    },
+    {
+      "id": "avisos-correo",
+      "nombre": "Avisos al cliente y correo del propio establecimiento",
+      "desde": "directo"
+    },
+    {
+      "id": "ficha-cliente",
+      "nombre": "Ficha de cliente y valoración post-visita",
+      "desde": "directo"
+    },
+    {
+      "id": "alta-establecimiento",
+      "nombre": "Alta de establecimiento sin consultoría",
+      "desde": "directo"
+    },
+    {
+      "id": "multi-local",
+      "nombre": "Multi-local y permisos por local",
+      "desde": "directo"
+    },
+    {
+      "id": "confirmacion-correo",
+      "nombre": "Confirmación por correo desde el buzón del propio local",
+      "desde": "directo"
+    },
+    {
+      "id": "tarifas-temporadas",
+      "nombre": "Tarifas, temporadas, precios diarios y restricciones",
+      "desde": "distribucion"
+    },
+    {
+      "id": "ical-portales",
+      "nombre": "Sincronización de calendarios con portales (iCal)",
+      "desde": "distribucion"
+    },
+    {
+      "id": "cobros-no-show",
+      "nombre": "Cobros con pasarela, retención de tarjeta y política de no-show",
+      "desde": "distribucion"
+    },
+    {
+      "id": "promos-fidelidad",
+      "nombre": "Códigos promocionales y niveles de fidelidad",
+      "desde": "distribucion"
+    },
+    {
+      "id": "eventos-grupos",
+      "nombre": "Eventos y grupos con aforo",
+      "desde": "distribucion"
+    },
+    {
+      "id": "sofia",
+      "nombre": "Sofía — WhatsApp, voz telefónica y web",
+      "desde": "atencion"
+    },
+    {
+      "id": "recordatorios-whatsapp",
+      "nombre": "Recordatorios por WhatsApp (solo reservas entradas por Sofía)",
+      "desde": "atencion"
+    },
+    {
+      "id": "registro-conversaciones",
+      "nombre": "Registro de conversaciones y contabilidad de uso de IA",
+      "desde": "atencion"
+    }
+  ],
+  "extras": {
+    "ia-repercutida": {
+      "nombre": "Uso de IA repercutido a coste",
+      "precio": null
+    }
+  }
+}

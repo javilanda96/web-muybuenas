@@ -23,9 +23,10 @@ Luego abrir `http://localhost:8099/`.
 2. **Datos legales reales** — razón social, NIF, domicilio, email. Ninguna
    página legal se publica sin esto y sin revisión de alguien con criterio
    jurídico.
-3. **Precios** — quedan marcadores `[[ ]]` a la espera de que Javier cierre
-   la banda de precio (hay referencia de mercado en el benchmark de
-   competencia, en el repo de la asesoría).
+3. **Precios** — puestos los de la tarifa aprobada el 11-09-2026 (89 / 179 /
+   329 € por local). Salen de `datos/tarifa-reservas.json` con
+   `node scripts/precios.mjs`; `--comprobar` falla si la web y la tarifa no
+   coinciden. Falta el visto bueno de Javier para enseñarlos.
 4. **Consentimiento de SOTO del PRIOR y MONTAGU** para aparecer como caso de
    cliente cero, y validación de la frase de declaración con Carlos.
 5. Pasar el `CHECKLIST-PUBLICACION.md` entero antes de que esto salga a

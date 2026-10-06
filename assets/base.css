@@ -236,6 +236,7 @@ a.oz-endoso:hover, a.oz-endoso:hover strong { color: var(--accent); }
 .oz-price h3 { font-family: var(--font-display); font-size: 25px; font-weight: 600; margin: 0; }
 .oz-price-amount { font-family: var(--font-display); font-size: 40px; line-height: 1; }
 .oz-price-amount small { font-family: var(--font-body); font-size: 14px; color: var(--warm); font-weight: 400; }
+.oz-price-para { margin: 0; font-size: 14px; color: var(--warm); }
 .oz-price ul { margin: 0; padding: 0; list-style: none; font-size: 15px; }
 .oz-price li { padding: 10px 0; border-top: 1px solid var(--line); color: var(--warm); }
 .oz-price .oz-btn { margin-top: auto; }
